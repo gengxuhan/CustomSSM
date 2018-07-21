@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+ <transactionManager type="JDBC"/>
+
+ 
+ <mapping-resourse>
+ <value>/config/newsMapper.xml</value>
+ <value>/config/ArticleMapper.xml</value>
+ <value>/config/CollegeMapper.xml</value>
+  <value>/config/ProfessMapper.xml</value>
+ </mapping-resourse>
+
+
+
+</configuration>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+
+
+
+ <bean name="dataSource" class="org.apache.commons.dbcp.BasicDataSource" >
+            <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+			<property name="url" value="jdbc:mysql://127.0.0.1:3306/tqstudy" />
+			<property name="username" value="root" />
+			<property name="password" value="gxh413717" />
+ </bean>
+ 
+ <bean name="sqlSessionFactoryBean" class="com.gxh.Ioc.MyBaits.SqlSessionFactoryBean">
+ <property name="configLocation" value="/config/SqlMapConfig.xml"></property>
+ <property name="dataSource" ref="dataSource"></property>
+ </bean>
+
+<bean name="mapperScaner" class="com.gxh.Ioc.MyBaits.MapperScaner">
+<property name="sessionFactoryBean" ref="sqlSessionFactoryBean"></property>
+<property name="packagename" value="com.TqStudy.Mapper"></property>
+
+
+</bean>
+
+
+
+<component-scan base-package="com.TqStudy.service" />
+<component-scan base-package="com.TqStudy.Dao" />
+
+
+</beans>

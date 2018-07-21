@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="com.TqStudy.Mapper.ArticleMapper" >
+ 
+
+<select id="selectArticle" resultType="com.TqStudy.bean.Article"  >
+ select * from article
+ </select>
+ 
+<select id="selectArticlebyid" resultType="com.TqStudy.bean.Article"  >
+ select * from article where articleid=#{articleid}
+</select>
+ 
+<insert id="insertArticle"  parameterType="com.TqStudy.bean.Article">
+<!-- <selectKey resultType="int" keyProperty="id" order="AFTER">
+SELECT LAST_INSERT_ID()
+</selectKey> -->
+INSERT INTO article (articleid,articletitle,articlecontext,createtime,remark) VALUE (${articleid},${articletitle},${articlecontext},${createtime},${remark})
+
+</insert> 
+<select id="selectCount"  resultType="int">
+ 
+SELECT COUNT(*) FROM article
+ 
+ </select>
+ <select id="selectArticleByPage"  resultType="com.TqStudy.bean.Article">
+ 
+SELECT * FROM article  
+ 
+ </select>
+ 
+  <update id="updateArticle" parameterType="com.TqStudy.bean.Article" >
+ 
+ UPDATE  article SET articletitle=#{articletitle} , createtime=#{createtime} ,articlecontext=#{articlecontext} WHERE articleid=${articleid}
+ </update>
+
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="com.TqStudy.Mapper.ProfessMapper" >
+ 
+ 
+<insert id="insertProfess"  parameterType="com.TqStudy.bean.Profess">
+<!-- <selectKey resultType="int" keyProperty="id" order="AFTER">
+SELECT LAST_INSERT_ID()
+</selectKey> -->
+INSERT INTO profess (professid,professname,professintro,collegeid,remark) VALUE (${professid},${professname},${professintro},${collegeid},${remark})
+
+</insert> 
+
+<select id="selectProfess" resultType="com.TqStudy.bean.Profess"  >
+ select * from profess
+ </select>
+ 
+ <select id="selectProfessbyid" resultType="com.TqStudy.bean.Profess"  >
+ select * from profess where professid=#{professid}
+</select>
+
+
+</mapper>

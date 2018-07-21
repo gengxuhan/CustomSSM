@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="com.TqStudy.Mapper.NewsMapper" >
+ 
+
+<select id="selectNews" resultType="com.TqStudy.bean.news"  >
+ select * from news
+ </select>
+ 
+<select id="selectNewsbyid" resultType="com.TqStudy.bean.news"  >
+ select * from news where newsid=#{newsid}
+ </select>
+ 
+<insert id="insertNews"  parameterType="com.TqStudy.bean.news">
+<!-- <selectKey resultType="int" keyProperty="id" order="AFTER">
+SELECT LAST_INSERT_ID()
+</selectKey> -->
+INSERT INTO news (newsid,newstitle,newscontext,newstype,createtime,remark) VALUE (${newsid},${newstitle},${newscontext},${newstype},${createtime},${remark})
+
+</insert> 
+<select id="selectCount"  resultType="int">
+ 
+SELECT COUNT(*) FROM news
+ 
+ </select>
+ <select id="selectNewsByPage"  resultType="com.TqStudy.bean.news">
+ 
+SELECT * FROM news  
+ 
+ </select>
+
+</mapper>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="com.TqStudy.Mapper.CollegeMapper" >
+ 
+
+<select id="selectCollege" resultType="com.TqStudy.bean.College"  >
+ select * from college
+ </select>
+ 
+<select id="selectCollegebyid" resultType="com.TqStudy.bean.College"  >
+ select * from college where collegeid=#{collegeid}
+</select>
+ 
+<insert id="insertCollege"  parameterType="com.TqStudy.bean.College">
+<!-- <selectKey resultType="int" keyProperty="id" order="AFTER">
+SELECT LAST_INSERT_ID()
+</selectKey> -->
+INSERT INTO college (collegeid,collegename,collegeintro,remark) VALUE (${collegeid},${collegename},${collegeintro},${remark})
+
+</insert> 
+<select id="selectCount"  resultType="int">
+ 
+SELECT COUNT(*) FROM college
+ 
+ </select>
+ <select id="selectCollegeByPage"  resultType="com.TqStudy.bean.College">
+ 
+SELECT * FROM college  
+ 
+ </select>
+ 
+  <update id="updateCollege" parameterType="com.TqStudy.bean.College" >
+ 
+ UPDATE  college SET  collegename=#{collegename} ,collegeintro=#{collegeintro} WHERE collegeid=${collegeid}
+ </update>
+ 
+<resultMap type="com.TqStudy.bean.College" id="CollegeMap"> 
+<id column="collegeid"  property="collegeid"/>
+<result column="collegename" property="collegename"  />
+<result column="collegeintro" property="collegeintro"  />
+<result column="remark" property="remark"  />
+<collection property="professes" ofType="com.TqStudy.bean.Profess">
+<id column="professid"  property="professid"/>
+<result column="professname" property="professname"  />
+<result column="professintro" property="professintro"  />
+<result column="remark" property="remark"  />
+ </collection>
+ </resultMap>
+
+</mapper>

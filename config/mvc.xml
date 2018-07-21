@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+<component-scan base-package="com.TqStudy.controller" />
+
+<interceptors>
+
+<interceptor path="/**" class="com.TqStudy.interceptor.CharsetInterceptor" >
+
+</interceptor> 
+
+</interceptors>
+
+</beans>
