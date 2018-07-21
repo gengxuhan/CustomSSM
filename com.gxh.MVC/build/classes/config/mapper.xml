@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="com.gxh.mapper.BookMapper" >
+ <select id="findUserById" resultType="com.gxh.pojo.User" parameterType="int" >
+ select * from user where id= #{bookId}
+ </select>
+ 
+ <select id="findbookBystyle"  resultMap="StyleResultmap" >
+ 
+SELECT * FROM style LEFT JOIN book ON book.styleid=style.styleid  WHERE style.styleid=#{style.styleid}
+ 
+ </select>
+ 
+
+
+<insert id="insertBook"  parameterType="int">
+<!-- <selectKey resultType="int" keyProperty="id" order="AFTER">
+SELECT LAST_INSERT_ID()
+</selectKey> -->
+INSERT INTO book (bookname,bookId) VALUE (${bookname},${bookId})
+
+</insert> 
+
+<select id="findUser"  resultType="com.gxh.pojo.User"  parameterType="com.gxh.pojo.UserBaoZhuang">
+select * from user
+<where>
+<if test="userKuo!=null">
+
+<if test="userKuo.sex!=null">
+and user.sex=#{userKuo.sex}
+</if>
+<if test="userKuo.username!=null">
+and user.username like '%${userKuo.username}%'
+</if>
+<if test="userKuo.ids!=null">
+<foreach collection="userKuo.ids" item="user_id" open="AND (" close=")" separator="OR">
+id=#{user_id}
+</foreach>
+</if>
+
+
+</if>
+
+</where>
+</select>
+
+ <resultMap type="com.gxh.bean.Book" id="bookResultmap"> 
+<id column="bookId"  property="bookId"/>
+<result column="bookname" property="bookname"  />
+<result column="author" property="author"  />
+<result column="publisher" property="publisher"  />
+ <association property="style" javaType="com.gxh.bean.Style">
+<id column="styleid" property="styleid"/>
+<result column="stylename"  property="stylename"/>
+ </association>
+ </resultMap>
+
+<select id="findbook"  resultMap="map" >
+ 
+SELECT * FROM book where book.bookId=#{bookId}
+ 
+ </select> 
+ <resultMap type="com.gxh.bean.Book" id="map"> 
+<id column="bookId"  property="bookId"/>
+<result column="bookname" property="bookname"  />
+<result column="author" property="author"  />
+<result column="publisher" property="publisher"  />
+ <association property="style" javaType="com.gxh.bean.Style" column="styleid" select="findstyle" >
+ <id column="styleid"  property="styleid"/>
+ </association>
+ </resultMap>
+<select id="findstyle"  resultType="com.gxh.bean.Style" >
+ 
+select * from style where style.styleid=#{styleid}
+ 
+ </select>
+ 
+<resultMap type="com.gxh.bean.Style" id="StyleResultmap"> 
+<id column="styleid" property="styleid"/>
+<result column="stylename"  property="stylename"/>
+<collection property="booklist" ofType="com.gxh.bean.Book">
+<id column="bookId"  property="bookId"/>
+<result column="bookname" property="bookname"  />
+<result column="author" property="author"  />
+<result column="publisher" property="publisher"  />
+ </collection>
+ </resultMap>
+
+ <delete id="deletebook" parameterType="int">
+ delete from book where bookId=#{bookId} or bookname=#{bookname}
+ </delete>
+ 
+ <update id="upUser" parameterType="com.gxh.po.User">
+ update user set  username=#{username},sex=#{sex}  where id=#{id}
+ 
+ </update>
+
+</mapper>

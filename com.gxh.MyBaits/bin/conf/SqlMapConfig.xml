@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+ <transactionManager type="JDBC"/>
+ <!-- 数据库连接池，由mybatis管理 -->
+ <dataSource name="dataSource" class="org.apache.commons.dbcp.BasicDataSource" >
+            <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+			<property name="url" value="jdbc:mysql://127.0.0.1:3306/tqstudy" />
+			<property name="username" value="root" />
+			<property name="password" value="gxh413717" />
+ </dataSource>
+ 
+ <jdbc>
+            <property name="driver" value="com.mysql.jdbc.Driver" />
+			<property name="url" value="jdbc:mysql://127.0.0.1:3306/tqstudy" />
+			<property name="username" value="root" />
+			<property name="password" value="gxh413717" />
+ </jdbc>
+ 
+ <mapping-resourse>
+ <value>/conf/mapper.xml</value>
+ <value>/conf/newsMapper.xml</value>
+ <value></value>
+ </mapping-resourse>
+
+
+
+</configuration>

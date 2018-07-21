@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="com.gxh.mapper.NewsMapper" >
+ 
+
+
+<insert id="insertNews"  parameterType="com.gxh.bean.news">
+<!-- <selectKey resultType="int" keyProperty="id" order="AFTER">
+SELECT LAST_INSERT_ID()
+</selectKey> -->
+INSERT INTO news (newsid,newstitle,newscontext,newstype,createtime,remark) VALUE (${newsid},${newstitle},${newscontext},${newstype},${createtime},${remark})
+
+</insert> 
+
+<select id="selectCount"  resultType="int">
+ 
+SELECT COUNT(*) FROM news
+ 
+ </select>
+ <select id="selectnews"  resultType="com.gxh.bean.news">
+ 
+SELECT * FROM news WHERE newstype =0 
+ 
+ </select>
+ 
+ <update id="updatenews" parameterType="com.gxh.bean.news" >
+ 
+ UPDATE  news SET newstitle=#{newstitle} , createtime=#{createtime} WHERE newsid=#{newsid}
+ </update>
+</mapper>

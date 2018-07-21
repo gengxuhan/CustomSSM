@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="com.gxh.mapper.Usermapper" >
+
+ 
+<select id="finduserByid"  resultType="com.gxh.bean.User">
+ 
+SELECT password FROM user WHERE username=#{username}
+ 
+ </select>
+ 
+ 
+ <insert id="insertuser"  parameterType="com.gxh.bean.User">
+<selectKey resultType="int" keyProperty="id" order="AFTER">
+SELECT LAST_INSERT_ID()
+</selectKey>
+INSERT INTO user (username,password) VALUE (${username},${password})
+
+</insert> 
+
+ 
+
+
+</mapper>
